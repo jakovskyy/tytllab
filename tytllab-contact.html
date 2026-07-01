@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — TytlLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F9FAFB;
+      --bg-soft:   #F2F2F0;
+      --surface:   #FFFFFF;
+      --border:    rgba(30,30,30,0.08);
+      --border-2:  rgba(30,30,30,0.14);
+      --text:      #1E1E1E;
+      --text-muted:#475569;
+      --text-dim:  #94A3B8;
+      --ink:       #2563EB;
+      --teal:      #14B8A6;
+      --green:     #10B981;
+      --radius:    10px;
+      --radius-sm:  7px;
+      --radius-lg: 16px;
+      --shadow:    0 2px 12px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      --max-w: 1160px;
+      --t: 0.18s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(249,250,251,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 64px; display: flex; align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+      width: 100%; display: flex; align-items: center;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 9px;
+      font-weight: 700; font-size: 15px; letter-spacing: -0.02em;
+      color: var(--text); margin-right: 32px;
+    }
+
+    .logo-mark { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-muted);
+      padding: 6px 11px; border-radius: 6px;
+      transition: color var(--t), background var(--t);
+    }
+
+    .nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+    .nav-links a.active { color: var(--text); font-weight: 600; }
+
+    .nav-spacer { flex: 1; }
+
+    .nav-cta {
+      background: var(--ink); color: #FFFFFF;
+      font-size: 13.5px; font-weight: 600;
+      padding: 8px 18px; border-radius: var(--radius-sm);
+      transition: opacity var(--t), transform var(--t);
+    }
+
+    .nav-cta:hover { opacity: 0.82; transform: translateY(-1px); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 128px 0 64px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink); margin-bottom: 20px;
+    }
+
+    .page-eyebrow::before {
+      content: ''; width: 18px; height: 2px;
+      background: var(--ink); border-radius: 2px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(34px, 4vw, 50px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .page-hero p {
+      font-size: 17px; color: var(--text-muted);
+      line-height: 1.7; max-width: 500px;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section { padding: 80px 0 100px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Left sidebar */
+    .contact-sidebar {}
+
+    .type-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+
+    .type-btn {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color var(--t), box-shadow var(--t);
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .type-btn:hover {
+      border-color: var(--border-2);
+      box-shadow: var(--shadow);
+    }
+
+    .type-btn.selected {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+    }
+
+    .type-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .type-icon.icon-general { background: rgba(37,99,235,0.08); }
+    .type-icon.icon-support  { background: rgba(20,184,166,0.08); }
+    .type-icon.icon-sales    { background: rgba(16,185,129,0.08); }
+
+    .type-label { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .type-desc  { font-size: 12px; color: var(--text-muted); }
+
+    .type-radio {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--border-2);
+      border-radius: 50%;
+      margin-left: auto; flex-shrink: 0;
+      position: relative;
+      transition: border-color var(--t);
+    }
+
+    .type-btn.selected .type-radio {
+      border-color: var(--ink);
+    }
+
+    .type-btn.selected .type-radio::after {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 7px; height: 7px;
+      border-radius: 50%; background: var(--ink);
+    }
+
+    /* Contact details */
+    .sidebar-details { display: flex; flex-direction: column; gap: 20px; }
+
+    .detail-item { display: flex; align-items: flex-start; gap: 12px; }
+
+    .detail-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+
+    .detail-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 3px; }
+    .detail-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+    /* Right form */
+    .contact-form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+    }
+
+    .form-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .form-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 36px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 12.5px; font-weight: 600; color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid var(--border-2);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t);
+      width: 100%;
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+      background: var(--surface);
+    }
+
+    .form-select { appearance: none; cursor: pointer; }
+
+    .form-textarea {
+      resize: vertical; min-height: 120px;
+      line-height: 1.6;
+    }
+
+    /* Sales extras */
+    .sales-extras { display: none; }
+    .sales-extras.visible { display: contents; }
+
+    .form-submit {
+      width: 100%; margin-top: 8px;
+      background: var(--ink); color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 700;
+      padding: 14px 24px;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: opacity var(--t), transform var(--t);
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .form-note {
+      text-align: center; font-size: 12px;
+      color: var(--text-dim); margin-top: 14px;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 60px 24px;
+      gap: 16px;
+    }
+
+    .success-icon {
+      width: 56px; height: 56px;
+      background: rgba(16,185,129,0.10);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .form-success h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    .form-success p { font-size: 14.5px; color: var(--text-muted); max-width: 320px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 64px 0 0; }
+
+    .footer-inner { display: grid; grid-template-columns: 200px 1fr; gap: 48px 64px; align-items: start; }
+    .footer-logo-col { display: flex; flex-direction: column; gap: 12px; }
+    .footer-logo { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; color: #FFFFFF; }
+    .footer-logo-mark { width: 26px; height: 26px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.14); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: rgba(255,255,255,0.7); }
+    .footer-tagline { font-size: 11.5px; color: rgba(255,255,255,0.38); line-height: 1.6; max-width: 170px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .footer-col-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 12px; }
+    .footer-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
+    .footer-links a { font-size: 12.5px; color: rgba(255,255,255,0.65); transition: color var(--t); }
+    .footer-links a:hover { color: #FFFFFF; }
+    .footer-bottom { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.30); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 11px; color: rgba(255,255,255,0.30); transition: color var(--t); }
+    .footer-legal a:hover { color: rgba(255,255,255,0.70); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .contact-form-wrap { padding: 28px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+
+    /* ── HERO ORBS ───────────────────────────────────── */
+    .page-hero { position: relative; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .hero-orb-1 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%); filter: blur(56px); top: -80px; left: -80px; animation: orbFade 1.6s ease 0.1s both; }
+    .hero-orb-2 { width: 240px; height: 240px; background: radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 70%); filter: blur(56px); top: -30px; right: -60px; animation: orbFade 1.6s ease 0.4s both; }
+    @keyframes orbFade { from { opacity: 0; } to { opacity: 1; } }
+    .page-hero > .container { position: relative; z-index: 2; }
+    /* ── SCROLL FADE-UP ──────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .fade-up.in-view { opacity: 1; transform: none; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="tytllab-v2.html" class="nav-logo">
+        <div class="logo-mark">
+          <img src="logotransparent.png" alt="TytlLab" width="32" height="32" style="display:block;object-fit:contain;">
+        </div>
+        TytlLab
+      </a>
+      <ul class="nav-links">
+        <li><a href="tytllab-v2.html">Home</a></li>
+        <li><a href="tytllab-v2.html#how">How It Works</a></li>
+        <li><a href="tilo.html">Tilo</a></li>
+      </ul>
+      <div class="nav-spacer"></div>
+      <a href="tytllab-v2.html#cta" class="nav-cta">Get Access</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="container">
+      <div class="page-eyebrow">Contact</div>
+      <h1>We'll get back to you.</h1>
+      <p>Tell us what you need. General questions, product support, or a sales conversation — pick the right channel and we'll respond the same business day.</p>
+    </div>
+  </section>
+
+  <!-- ── CONTACT SECTION ── -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid fade-up">
+
+        <!-- Sidebar -->
+        <div class="contact-sidebar">
+          <div class="type-selector">
+
+            <button class="type-btn selected" data-type="general">
+              <div class="type-icon icon-general">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="6" stroke="#2563EB" stroke-width="1.4"/>
+                  <path d="M8 5v3l2 2" stroke="#2563EB" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="type-label">General Inquiries</div>
+                <div class="type-desc">Questions, partnerships, press</div>
+              </div>
+              <div class="type-radio"></div>
+            </button>
+
+            <button class="type-btn" data-type="support">
+              <div class="type-icon icon-support">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="6" stroke="#14B8A6" stroke-width="1.4"/>
+                  <path d="M6 6.5C6 5.67 6.9 5 8 5s2 .67 2 1.5c0 1-1 1.5-1 2.5" stroke="#14B8A6" stroke-width="1.3" stroke-linecap="round"/>
+                  <circle cx="8" cy="11" r=".6" fill="#14B8A6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="type-label">Support</div>
+                <div class="type-desc">Product issues, technical help</div>
+              </div>
+              <div class="type-radio"></div>
+            </button>
+
+            <button class="type-btn" data-type="sales">
+              <div class="type-icon icon-sales">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 11l3-3 2 2 5-5" stroke="#10B981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <div class="type-label">Sales</div>
+                <div class="type-desc">Pricing, demo, onboarding</div>
+              </div>
+              <div class="type-radio"></div>
+            </button>
+
+          </div>
+
+          <div class="sidebar-details">
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3.5h10l-5 5-5-5z" fill="#94A3B8"/><path d="M2 3.5v7h10v-7" stroke="#94A3B8" stroke-width="1.1" fill="none" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Email</div>
+                <div class="detail-value">hello@tytllab.com</div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="#94A3B8" stroke-width="1.1"/><path d="M7 4v3l2 2" stroke="#94A3B8" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Response time</div>
+                <div class="detail-value">Same business day</div>
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L1.5 5.5v7h3V9h5v3.5h3v-7L7 1.5z" stroke="#94A3B8" stroke-width="1.1" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="detail-label">Based in</div>
+                <div class="detail-value">New Jersey</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-wrap">
+
+          <!-- Form content -->
+          <div id="form-content">
+            <div class="form-title" id="form-title">General Inquiries</div>
+            <div class="form-sub" id="form-sub">Questions about TytlLab, partnerships, or press.</div>
+
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fname">First name</label>
+                  <input class="form-input" type="text" id="fname" placeholder="Jessica" required>
+                </div>
+                <div class="form-group">
+                  <label for="lname">Last name</label>
+                  <input class="form-input" type="text" id="lname" placeholder="Carter" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Work email</label>
+                  <input class="form-input" type="email" id="email" placeholder="jessica@youragency.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="company">Company</label>
+                  <input class="form-input" type="text" id="company" placeholder="Hudson Title Group">
+                </div>
+
+                <!-- Sales-only fields -->
+                <div class="form-group sales-extras" id="field-teamsize">
+                  <label for="teamsize">Team size</label>
+                  <select class="form-select" id="teamsize">
+                    <option value="" disabled selected>Select...</option>
+                    <option>1 person</option>
+                    <option>2–5 people</option>
+                    <option>6–15 people</option>
+                    <option>16–50 people</option>
+                    <option>50+ people</option>
+                  </select>
+                </div>
+                <div class="form-group sales-extras" id="field-current">
+                  <label for="current">Current software</label>
+                  <input class="form-input" type="text" id="current" placeholder="SoftPro, RamQuest, other...">
+                </div>
+
+                <div class="form-group full">
+                  <label for="message" id="message-label">Message</label>
+                  <textarea class="form-textarea" id="message" placeholder="Tell us what you're working on..." required></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="form-submit">
+                Send message
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="form-note" id="form-note">We respond within one business day.</div>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="form-success" id="form-success">
+            <div class="success-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Message sent.</h3>
+            <p>We'll be in touch within one business day. Check your inbox.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo-col">
+          <div class="footer-logo">
+            <div class="footer-logo-mark">TL</div>
+            TytlLab
+          </div>
+          <div class="footer-tagline">The operating system for modern title agencies.</div>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <div class="footer-col-label">Product</div>
+            <ul class="footer-links">
+              <li><a href="tytllab-v2.html#how">How It Works</a></li>
+              <li><a href="tytllab-v2.html#agents">The Assistant System</a></li>
+              <li><a href="tilo.html">Tilo</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="tytllab-v2.html#cta">Get Access</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-label">Company</div>
+            <ul class="footer-links">
+              <li><a href="tytllab-about.html">About</a></li>
+              <li><a href="tytllab-blog.html">Blog</a></li>
+              <li><a href="tytllab-contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-label">Resources</div>
+            <ul class="footer-links">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Security</a></li>
+              <li><a href="#">Status</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-label">Platforms</div>
+            <ul class="footer-links">
+              <li><a href="https://closingmap.com" target="_blank" rel="noopener">ClosingMap</a></li>
+              <li><a href="https://closeprop.com" target="_blank" rel="noopener">CloseProp</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">&copy; 2026 SCL Holdings. All rights reserved.</div>
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+
+    var types = document.querySelectorAll('.type-btn');
+    var formTitle = document.getElementById('form-title');
+    var formSub = document.getElementById('form-sub');
+    var salesExtras = document.querySelectorAll('.sales-extras');
+    var formNote = document.getElementById('form-note');
+    var messagePlaceholder = document.getElementById('message');
+
+    var config = {
+      general: {
+        title: 'General Inquiries',
+        sub: 'Questions about TytlLab, partnerships, or press.',
+        messagePlaceholder: 'Tell us what you\'re working on...',
+        note: 'We respond within one business day.'
+      },
+      support: {
+        title: 'Support',
+        sub: 'Describe what you\'re seeing and we\'ll get back to you the same day.',
+        messagePlaceholder: 'Describe the issue — what happened, what you expected, and which part of the product it\'s in...',
+        note: 'Support response time: same business day.'
+      },
+      sales: {
+        title: 'Talk to Sales',
+        sub: 'Tell us about your agency and we\'ll set up a product walkthrough at your pace.',
+        messagePlaceholder: 'What are the biggest operational challenges your team is dealing with right now?',
+        note: 'A member of the team will be in touch within 24 hours.'
+      }
+    };
+
+    types.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        types.forEach(function(b){ b.classList.remove('selected'); });
+        btn.classList.add('selected');
+
+        var type = btn.getAttribute('data-type');
+        var c = config[type];
+
+        formTitle.textContent = c.title;
+        formSub.textContent = c.sub;
+        messagePlaceholder.placeholder = c.messagePlaceholder;
+        formNote.textContent = c.note;
+
+        if(type === 'sales'){
+          salesExtras.forEach(function(el){ el.classList.add('visible'); });
+        } else {
+          salesExtras.forEach(function(el){ el.classList.remove('visible'); });
+        }
+      });
+    });
+
+    // Form submit
+    var form = document.getElementById('contact-form');
+    var formContent = document.getElementById('form-content');
+    var formSuccess = document.getElementById('form-success');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      formContent.style.display = 'none';
+      formSuccess.style.display = 'flex';
+    });
+
+  })();
+
+  // ── Scroll fade-up ──────────────────────────────────────────
+  (function(){
+    var els = document.querySelectorAll('.fade-up');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(function(el) { io.observe(el); });
+    } else {
+      els.forEach(function(el) { el.classList.add('in-view'); });
+    }
+  })();
+  </script>
+
+</body>
+</html>

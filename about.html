@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — TytlLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #F9FAFB;
+      --bg-soft:   #F2F2F0;
+      --surface:   #FFFFFF;
+      --border:    rgba(30,30,30,0.08);
+      --border-2:  rgba(30,30,30,0.14);
+      --text:      #1E1E1E;
+      --text-muted:#475569;
+      --text-dim:  #94A3B8;
+      --ink:       #2563EB;
+      --teal:      #14B8A6;
+      --radius:    10px;
+      --radius-sm:  7px;
+      --radius-lg: 16px;
+      --shadow:    0 2px 12px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      --max-w: 1160px;
+      --t: 0.18s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(249,250,251,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex; align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px;
+      width: 100%; display: flex; align-items: center;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 9px;
+      font-weight: 700; font-size: 15px; letter-spacing: -0.02em;
+      color: var(--text); margin-right: 32px;
+    }
+
+    .logo-mark {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .nav-links { display: flex; gap: 2px; list-style: none; }
+
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-muted);
+      padding: 6px 11px; border-radius: 6px;
+      transition: color var(--t), background var(--t);
+    }
+
+    .nav-links a:hover { color: var(--text); background: rgba(0,0,0,0.05); }
+    .nav-links a.active { color: var(--text); font-weight: 600; }
+
+    .nav-spacer { flex: 1; }
+
+    .nav-cta {
+      background: var(--ink); color: #FFFFFF;
+      font-size: 13.5px; font-weight: 600;
+      padding: 8px 18px; border-radius: var(--radius-sm);
+      transition: opacity var(--t), transform var(--t);
+    }
+
+    .nav-cta:hover { opacity: 0.82; transform: translateY(-1px); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 128px 0 80px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .page-eyebrow::before {
+      content: '';
+      width: 18px; height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(38px, 4.5vw, 58px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .page-hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 88px 0; }
+    .section-alt { background: var(--surface); }
+    .section-border { border-top: 1px solid var(--border); }
+
+    /* ── ORIGIN SECTION ── */
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .origin-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .origin-grid h2 {
+      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .origin-grid p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.78;
+      margin-bottom: 20px;
+    }
+
+    .origin-grid p:last-child { margin-bottom: 0; }
+
+    .stat-stack { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
+
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+    }
+
+    .stat-num {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .stat-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    /* ── WHAT WE BUILT ── */
+    .built-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .built-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .built-icon {
+      width: 40px; height: 40px;
+      background: rgba(37,99,235,0.08);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .built-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .built-card p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header { max-width: 600px; margin-bottom: 56px; }
+
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 14px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── PLATFORM STRIP ── */
+    .platform-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .platform-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+
+    .platform-card:hover {
+      border-color: var(--border-2);
+      box-shadow: var(--shadow);
+    }
+
+    .platform-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .platform-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .platform-arrow {
+      color: var(--text-dim);
+      transition: color var(--t), transform var(--t);
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .platform-card:hover .platform-arrow {
+      color: var(--ink);
+      transform: translateX(3px);
+    }
+
+    /* ── CTA ── */
+    .cta-section { padding: 120px 0; text-align: center; background: #0D1E37; }
+
+    .cta-logo-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 40px;
+    }
+
+    .cta-logo-mark {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cta-wordmark {
+      font-size: 20px; font-weight: 700;
+      letter-spacing: -0.02em; color: #FFFFFF;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    .cta-form {
+      display: flex; gap: 10px;
+      max-width: 420px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-input {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 0 16px;
+      border-radius: var(--radius-sm);
+      height: 48px;
+      outline: none;
+    }
+
+    .cta-input::placeholder { color: rgba(255,255,255,0.35); }
+    .cta-input:focus { border-color: rgba(255,255,255,0.36); }
+
+    .btn-cta {
+      background: #FFFFFF; color: #0D1E37;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 700;
+      padding: 0 22px; height: 48px;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; white-space: nowrap;
+      transition: opacity var(--t);
+    }
+
+    .btn-cta:hover { opacity: 0.88; }
+
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.30); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 64px 0 0; }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px 64px;
+      align-items: start;
+    }
+
+    .footer-logo-col { display: flex; flex-direction: column; gap: 12px; }
+
+    .footer-logo {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 14px; font-weight: 700; color: #FFFFFF;
+    }
+
+    .footer-logo-mark {
+      width: 26px; height: 26px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 800;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-tagline {
+      font-size: 11.5px; color: rgba(255,255,255,0.38);
+      line-height: 1.6; max-width: 170px;
+    }
+
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .footer-col-label {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); margin-bottom: 12px;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
+
+    .footer-links a {
+      font-size: 12.5px; color: rgba(255,255,255,0.65);
+      transition: color var(--t);
+    }
+
+    .footer-links a:hover { color: #FFFFFF; }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.30); }
+
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-size: 11px; color: rgba(255,255,255,0.30);
+      transition: color var(--t);
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.70); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .origin-grid { grid-template-columns: 1fr; gap: 48px; }
+      .built-grid { grid-template-columns: 1fr 1fr; }
+      .platform-strip { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .built-grid { grid-template-columns: 1fr; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
+    }
+
+    /* ── HERO ORBS ───────────────────────────────────── */
+    .page-hero { position: relative; overflow: hidden; }
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+    .hero-orb-1 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(20,184,166,0.18) 0%, transparent 70%); filter: blur(56px); top: -80px; left: -80px; animation: orbFade 1.6s ease 0.1s both; }
+    .hero-orb-2 { width: 240px; height: 240px; background: radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 70%); filter: blur(56px); top: -30px; right: -60px; animation: orbFade 1.6s ease 0.4s both; }
+    @keyframes orbFade { from { opacity: 0; } to { opacity: 1; } }
+    .page-hero > .container { position: relative; z-index: 2; }
+    /* ── SCROLL FADE-UP ──────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .fade-up.in-view { opacity: 1; transform: none; }
+
+  
+    /* ================= V4 - TELLAIA SYSTEM (site-wide) ================= */
+    :root{ --ink:#1067FE; --t-bg:#F6F8FA; --t-line:#E7EAF0; --t-mut:#5A6472; }
+    body{ background:var(--t-bg) !important; }
+
+    h1, h2, .form-title, .section-title, .page-title{
+      font-family:'Instrument Serif', Georgia, serif !important; font-weight:400 !important;
+      letter-spacing:0 !important; line-height:1.2 !important;
+      text-shadow:0 2px 10px rgba(0,0,0,.14); }
+
+    nav{ background:rgba(246,248,250,0.92) !important; border-bottom:1px solid var(--t-line); }
+    .nav-links a{ font-family:'Inter',sans-serif !important; text-transform:none !important;
+      letter-spacing:0 !important; font-size:14px !important; font-weight:500 !important; color:#111; }
+    .nav-cta{ font-family:'Inter',sans-serif !important; text-transform:none !important;
+      letter-spacing:0 !important; font-size:14px !important; font-weight:600 !important;
+      background:#000 !important; color:#fff !important; border-radius:8px !important;
+      box-shadow:0 2px 6px rgba(10,15,30,.12), 0 6px 14px rgba(10,15,30,.08); }
+
+    /* hero band: same texture as home */
+    .page-hero{ position:relative; overflow:hidden; background:var(--t-bg) !important; }
+    .page-hero::before{ content:''; position:absolute; width:640px; height:640px; left:-200px; top:-200px;
+      border-radius:50%; pointer-events:none; filter:blur(70px); z-index:0;
+      background:radial-gradient(circle, rgba(150,180,255,0.38) 0%, rgba(190,205,255,0.14) 45%, transparent 70%); }
+    .page-hero::after{ content:''; position:absolute; width:560px; height:560px; right:-180px; top:-80px;
+      border-radius:50%; pointer-events:none; filter:blur(70px); z-index:0;
+      background:radial-gradient(circle, rgba(255,200,150,0.30) 0%, rgba(255,220,190,0.10) 45%, transparent 70%); }
+    .page-hero > .container{ position:relative; z-index:2; }
+
+    .section-alt{ background:transparent !important; }
+    .section-eyebrow, .page-eyebrow, [class*="eyebrow"]{
+      font-family:'Inter',sans-serif !important; display:inline-block; background:#E7EEFF !important;
+      color:var(--ink) !important; padding:7px 16px; border-radius:100px;
+      text-transform:none !important; letter-spacing:0 !important;
+      font-size:14px !important; font-weight:500 !important; }
+
+    .btn-primary, .btn-cta, button[type="submit"], input[type="submit"]{
+      background:var(--ink) !important; color:#fff !important; border-radius:8px !important;
+      font-family:'Inter',sans-serif !important;
+      box-shadow:0 2px 6px rgba(10,15,30,.14), 0 6px 16px rgba(10,15,30,.10); }
+    .btn-ghost{ border-radius:8px !important; }
+
+    /* CTA: light with blue glow (matches home) */
+    .cta-section{ background:transparent !important; position:relative; overflow:hidden; }
+    .cta-section::before{ content:''; position:absolute; left:50%; top:50%; width:820px; height:820px;
+      transform:translate(-50%,-42%); border-radius:50%; pointer-events:none;
+      background:radial-gradient(circle, rgba(16,103,254,.15) 0%, rgba(16,103,254,.05) 45%, transparent 70%); }
+    .cta-section > .container{ position:relative; z-index:2; }
+    .cta-section h2{ color:#000 !important; }
+    .cta-section p{ color:var(--t-mut) !important; }
+    .cta-logo-wrap img{ filter:none !important; opacity:1 !important; }
+    .cta-wordmark{ color:#000 !important; }
+    .cta-input{ background:#fff !important; border:1px solid #D7DCE5 !important; color:#111 !important; }
+    .cta-input::placeholder{ color:#9AA3B0 !important; }
+    .cta-note{ color:#9AA3B0 !important; font-family:'Inter',sans-serif !important;
+      text-transform:none !important; letter-spacing:0 !important; }
+
+    /* light footer (v4) */
+    .t-foot{ background:#fff; border-top:1px solid var(--t-line); padding:56px 0 32px; }
+    .t-foot .container{ max-width:1160px; margin:0 auto; padding:0 24px; }
+    .t-foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr; gap:36px; }
+    .t-foot-word{ font-weight:700; font-size:17px; color:#000; }
+    .t-foot-logo{ display:flex; align-items:center; gap:10px; }
+    .t-foot-mail{ display:block; margin-top:14px; color:var(--t-mut); font-size:14px; text-decoration:none; }
+    .t-foot-h{ font-size:14px; font-weight:600; color:#000; margin-bottom:14px; }
+    .t-foot-l{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+    .t-foot-l a{ color:var(--t-mut); font-size:14px; text-decoration:none; }
+    .t-foot-l a:hover{ color:#000; }
+    .t-foot-bot{ display:flex; justify-content:space-between; margin-top:44px; padding-top:22px;
+      border-top:1px solid var(--t-line); color:#9AA3B0; font-size:13px; }
+    @media(max-width:900px){ .t-foot-grid{ grid-template-columns:1fr 1fr; } }
+  
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark">
+          <img src="logotransparent.png" alt="TytlLab" width="32" height="32" style="display:block;object-fit:contain;">
+        </div>
+        TytlLab
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#how">How It Works</a></li>
+        <li><a href="#">Tilo</a></li>
+      </ul>
+      <div class="nav-spacer"></div>
+      <a href="index.html#cta" class="nav-cta">Get Access</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="page-eyebrow">About TytlLab</div>
+        <h1>Built from twenty years inside the closing process.</h1>
+        <p>TytlLab wasn't designed in a conference room. The people who built it spent two decades on every side of the real estate transaction and got tired of watching the same coordination failures cost time, money, and deals. This is what they built to fix it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ORIGIN ── -->
+  <section class="section section-alt section-border">
+    <div class="container">
+      <div class="origin-grid">
+
+        <div class="fade-up" style="transition-delay:0.05s">
+          <div class="origin-label">The origin</div>
+          <h2>The process wasn't broken. The infrastructure was.</h2>
+          <p>The founders of TytlLab came to title during the days when they didn't have the aid of computers. Their path ran from construction management through residential brokerage, through dozens of deals as developers and agents in New York City. At every stage, the closing process was the same: capable people forced into low-value coordination work because there was no system built for them.</p>
+          <p>Files stalled waiting on vendor replies, exceptions were tracked in spreadsheets, and closers spent mornings sending follow-up emails instead of working files.</p>
+          <p>TytlLab is the software they built to manage and resolve these issues by employing agentic AI to handle coordination, follow-ups, and tracking across every file at scale.</p>
+        </div>
+
+        <div class="stat-stack fade-up" style="transition-delay:0.2s">
+          <div class="stat-card">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Years of real estate operations experience behind the product</div>
+            <hr class="stat-divider">
+            <div class="stat-label" style="font-size:13px; color: var(--text-dim);">From construction to brokerage to settlement. The full transaction, from every seat at the table.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">7</div>
+            <div class="stat-label">AI assistants, each purpose-built for a specific phase of the title file</div>
+            <hr class="stat-divider">
+            <div class="stat-label" style="font-size:13px; color: var(--text-dim);">Order intake through recording and policy. The full arc of the file, automated where it should be.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Operating system for your entire title agency</div>
+            <hr class="stat-divider">
+            <div class="stat-label" style="font-size:13px; color: var(--text-dim);">Not a workflow tool. Not a CRM add-on. A complete operating layer built around the way title actually works.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT WE BUILT ── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-eyebrow">The product</div>
+        <h2>What two decades of operational experience produces.</h2>
+      </div>
+
+      <div class="built-grid">
+        <div class="built-card fade-up" style="transition-delay:0.05s">
+          <div class="built-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="9" r="7" stroke="#2563EB" stroke-width="1.5"/>
+              <path d="M9 6v3l2 2" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Seven AI assistants, one file.</h3>
+          <p>Each assistant owns a phase of the file: intake, search coordination, clearance, closing prep, recording, and policy. They work in sequence, hand off cleanly, and flag anything that needs a human.</p>
+        </div>
+        <div class="built-card fade-up" style="transition-delay:0.18s">
+          <div class="built-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="2" y="2" width="6" height="6" rx="1.5" fill="#2563EB" opacity=".2"/>
+              <rect x="10" y="2" width="6" height="6" rx="1.5" fill="#2563EB" opacity=".2"/>
+              <rect x="2" y="10" width="6" height="6" rx="1.5" fill="#2563EB" opacity=".2"/>
+              <rect x="10" y="10" width="6" height="6" rx="1.5" fill="#2563EB"/>
+            </svg>
+          </div>
+          <h3>Every open file on one screen.</h3>
+          <p>The TytlLab dashboard shows the status of every file in your office in real time. If something needs attention, it surfaces automatically.</p>
+        </div>
+        <div class="built-card fade-up" style="transition-delay:0.32s">
+          <div class="built-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M3 9h12M9 3v12" stroke="#2563EB" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>More volume. Same team.</h3>
+          <p>Title agencies using TytlLab don't hire more coordinators when they grow. They let the agents absorb the coordination load while their closers focus on the work that requires judgment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLATFORM ── -->
+  <section class="section section-alt section-border">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-eyebrow">The platform</div>
+        <h2>TytlLab is part of something larger.</h2>
+        <p>TytlLab is built by SCL Holdings — a company building the connected infrastructure for the real estate transaction, from search to close to record. TytlLab covers the title agency. The rest covers the deal.</p>
+      </div>
+
+      <div class="platform-strip">
+        <a href="https://closingmap.com" target="_blank" rel="noopener" class="platform-card">
+          <div>
+            <div class="platform-name">ClosingMap</div>
+            <div class="platform-desc">Transaction management for buyers, sellers, and real estate professionals.</div>
+          </div>
+          <svg class="platform-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://closeprop.com" target="_blank" rel="noopener" class="platform-card">
+          <div>
+            <div class="platform-name">CloseProp</div>
+            <div class="platform-desc">Deal management and pipeline tools for real estate teams and investors.</div>
+          </div>
+          <svg class="platform-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-logo-wrap">
+        <div class="cta-logo-mark">
+          <img src="logotransparent.png" alt="TytlLab" width="22" height="22" style="display:block;object-fit:contain;filter:brightness(0) invert(1);opacity:0.9;">
+        </div>
+        <div class="cta-wordmark">TytlLab</div>
+      </div>
+      <h2>See what TytlLab does for your agency.</h2>
+      <p>Request early access. We'll show you the product and walk through how it fits your operation.</p>
+      <div class="cta-form">
+        <input class="cta-input" type="email" placeholder="Work email">
+        <button class="btn-cta">Request Access</button>
+      </div>
+      <div class="cta-note">No commitment. No sales deck. Just the product.</div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="t-foot">
+    <div class="container">
+      <div class="t-foot-grid">
+        <div>
+          <div class="t-foot-logo">
+            <img src="logotransparent.png" alt="TytlLab" width="34" height="34" style="display:block;object-fit:contain;">
+            <span class="t-foot-word">TytlLab</span>
+          </div>
+          <a class="t-foot-mail" href="mailto:hello@tytllab.com">hello@tytllab.com</a>
+        </div>
+        <div>
+          <div class="t-foot-h">Quick Links</div>
+          <ul class="t-foot-l">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="t-foot-h">Product</div>
+          <ul class="t-foot-l">
+            <li><a href="index.html#agents">The Assistants</a></li>
+            <li><a href="#">Tilo</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="t-foot-h">Company</div>
+          <ul class="t-foot-l">
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="t-foot-h">Platform</div>
+          <ul class="t-foot-l">
+            <li><a href="https://closingmap.com" target="_blank" rel="noopener">ClosingMap</a></li>
+            <li><a href="https://closeprop.com" target="_blank" rel="noopener">CloseProp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="t-foot-bot">
+        <span>&copy; 2026 SCL Holdings. All rights reserved.</span>
+        <span>Privacy &middot; Terms</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var els = document.querySelectorAll('.fade-up');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(function(el) { io.observe(el); });
+    } else {
+      els.forEach(function(el) { el.classList.add('in-view'); });
+    }
+  })();
+  </script>
+
+</body>
+</html>
